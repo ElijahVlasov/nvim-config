@@ -4,6 +4,9 @@ return {
       ensure_installed = {
         "bash",
         "html",
+        "haskell",
+        "ocaml",
+        "rust",
         "javascript",
         "json",
         "lua",
