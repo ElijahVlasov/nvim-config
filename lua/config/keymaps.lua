@@ -6,4 +6,4 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 vim.keymap.set("n", "P", "p")
 vim.keymap.set("n", "p", "P")
-vim.keymap.set("i", "<C-[>", "<esc>")
+
