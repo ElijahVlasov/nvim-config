@@ -10,7 +10,7 @@ return {
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
         "hrsh7th/nvim-cmp",
-        "L3MON4D3/LuaSnip",
+        { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
     },
@@ -109,10 +109,14 @@ return {
             ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
             setup = {
                 -- example to setup with typescript.nvim
-                -- tsserver = function(_, opts)
-                    --   require("typescript").setup({ server = opts })
-                    --   return true
-                    -- end,
+                tsserver = function(_, opts)
+                      require("typescript").setup({ server = opts })
+                      return true
+                    end,
+                    haskell = function (_, opts)
+                       require("haskell").setup({ server = opts }) 
+                       return true
+                    end
                     -- Specify * to use this function as a fallback for any server
                     -- ["*"] = function(server, opts) end,
                 },
@@ -183,28 +187,7 @@ return {
 
                 vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
-                local cmp = require('cmp')
-                local cmp_select = { behavior = cmp.SelectBehavior.Select } 
-                cmp.setup({
-                    snippet = {
-                        expand = function(args)
-                            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-                        end,
-                    },
-                    mapping = cmp.mapping.preset.insert({
-                        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-                        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-                        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-                        ["<C-Space>"] = cmp.mapping.complete(),
-                    }),
-                    sources = cmp.config.sources({
-                        { name = "copilot", group_index = 2 },
-                        { name = 'nvim_lsp' },
-                        { name = 'luasnip' }, -- For luasnip users.
-                    }, {
-                        { name = 'buffer' },
-                    })
-                }) 
+                require("lsp") 
 
                 local servers = opts.servers
                 local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
