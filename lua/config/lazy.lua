@@ -15,7 +15,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.mapleader = " "
 
 
 
@@ -23,7 +22,7 @@ vim.g.mapleader = " "
 require("lazy").setup({
     spec = {  
         { "folke/lazy.nvim", version = "*" },
-        { "LazyVim/LazyVim", priority = 10000, lazy = false, opts = { colorscheme = "catppuccin" }, cond = true, version = "*" },
+        { "LazyVim/LazyVim", priority = 10000, lazy = false, opts = { colorscheme = "catppuccin-macchiato" }, cond = true, version = "*" },
         {
             "folke/snacks.nvim",
             priority = 1000,
