@@ -6,6 +6,7 @@ local paste_symbol = function (c)
 end
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = "  "
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
