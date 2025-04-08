@@ -10,9 +10,20 @@ vim.api.nvim_create_autocmd(
         pattern = "*.ml",
         group = "AutoFormat",
         callback = function()
-            vim.fn.jobstart("dune fmt")
-            print(vim.api.nvim_buf_get_name(0))
-            vim.cmd.edit()
+            vim.fn.jobstart({"ocamlformat" , vim.api.nvim_buf_get_name(0)},
+                {
+                    stdout_buffered = true,
+                    on_stdout = function (_, data)
+                        if data then
+                            vim.api.nvim_buf_set_lines(
+                                0,
+                                0, -1,
+                                false, data)
+                            vim.cmd([[silent :noautocmd w]])
+                        end
+                    end
+                }
+            ) 
         end,
-    }
-)
+        }
+    )
