@@ -1,7 +1,5 @@
-return {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
+local opts = {
+    ensure_installed = {
         "bash",
         "html",
         "haskell",
@@ -19,6 +17,14 @@ return {
         "typescript",
         "vim",
         "yaml",
-      },
     },
-  }
+}
+
+return {
+    "nvim-treesitter/nvim-treesitter",
+    opts = opts,
+    config = function ()
+        require("nvim-treesitter.configs").setup(opts)
+    end,
+    build = ":TSUpdate"
+}

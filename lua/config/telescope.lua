@@ -41,5 +41,5 @@ require('telescope').setup{
         vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
         vim.keymap.set('n', '<leader>fcs', builtin.colorscheme, { desc = 'Telescope color schemes' })
         vim.keymap.set('n', '<leader>gd', builtin.lsp_definitions, { desc = 'Telescope/goto defs' })
-        vim.keymap.set('n', '<leader>fts', builtin.treesitter, { desc = 'Telescope treesitter' })
+        vim.keymap.set('n', '<leader>fsi', builtin.treesitter, { desc = 'Telescope treesitter' })
 
