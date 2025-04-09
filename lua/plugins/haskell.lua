@@ -6,3 +6,4 @@ return {{
 {'mrcjkb/haskell-snippets.nvim', lazy = false},
 {'luc-tielen/telescope_hoogle', lazy=false}
 }
+
