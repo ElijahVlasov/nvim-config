@@ -143,6 +143,7 @@ return {
 				"rust-analyzer",
 				"haskell-language-server",
 				"ocamllsp",
+				"asm-lsp",
 				-- "tailwind-language-server",
 			}
 
