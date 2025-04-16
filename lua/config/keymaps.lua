@@ -1,10 +1,3 @@
-local paste_symbol = function(c)
-	local pos = vim.api.nvim_win_get_cursor(0)[2]
-	local line = vim.api.nvim_get_current_line()
-	local nline = line:sub(0, pos) .. c .. line:sub(pos + 1)
-	vim.api.nvim_set_current_line(nline)
-end
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = "  "
 
@@ -16,6 +9,20 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 vim.keymap.set("n", "P", "p")
 vim.keymap.set("n", "p", "P")
+
+vim.keymap.set("n", "<C-i>", "<C-a>")
+
+vim.keymap.set("n", "<localleader>j", function()
+	local r, c = unpack(vim.api.nvim_win_get_cursor(0))
+	vim.cmd([[norm O]])
+	vim.api.nvim_win_set_cursor(0, { r + 1, c })
+end)
+vim.keymap.set("n", "<localleader>k", function()
+	local c = vim.api.nvim_win_get_cursor(0)
+	vim.cmd([[norm o]])
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-e>", true, false, true), "n", false)
+	vim.api.nvim_win_set_cursor(0, c)
+end)
 
 vim.keymap.set("n", "<leader>puc", function()
 	vim.cmd([[colorscheme catppuccin-macchiato]])
