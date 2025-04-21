@@ -1,6 +1,7 @@
 local opts = {
 	ensure_installed = {
 		"bash",
+		"c",
 		"html",
 		"haskell",
 		"ocaml",
