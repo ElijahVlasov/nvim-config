@@ -19,7 +19,11 @@ return {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
-
+			{
+				"chrisgrieser/nvim-lsp-endhints",
+				event = "LspAttach",
+				opts = {}, -- required, even if empty
+			},
 			{ "j-hui/fidget.nvim", opts = {} },
 			{ "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
 
@@ -59,6 +63,11 @@ return {
 					},
 				},
 				lua_ls = {
+					settings = {
+						Lua = {
+							hint = { enable = true },
+						},
+					},
 					server_capabilities = {
 						semanticTokensProvider = vim.NIL,
 					},
@@ -106,9 +115,6 @@ return {
 						},
 					},
 				},
-
-				racket_langserver = { manual_install = true },
-				roc_ls = { manual_install = true },
 
 				ocamllsp = {
 					manual_install = true,
