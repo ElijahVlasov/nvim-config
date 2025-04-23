@@ -7,8 +7,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
-vim.keymap.set("n", "<S-h>", "<cmd>bnext<CR>")
-vim.keymap.set("n", "<S-l>", "<cmd>bprev<CR>")
+vim.keymap.set("n", "<S-h>", "<cmd>bprev<CR>")
+vim.keymap.set("n", "<S-l>", "<cmd>bnext<CR>")
 
 vim.keymap.set("n", "P", "p")
 vim.keymap.set("n", "p", "P")
