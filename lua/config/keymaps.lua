@@ -43,3 +43,20 @@ vim.keymap.set("n", "<leader>d[", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { n
 vim.keymap.set("n", "<leader>d]", "<cmd>lua vim.diagnostic.goto_next()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>dd", "<cmd>Telescope diagnostics<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>hg", "<cmd>Telescope hoogle<CR>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<localleader>pl", function()
+	local hash = vim.api.nvim_exec2("Git rev-parse HEAD", { output = true }).output
+	local url = vim.api.nvim_exec2("Git remote get-url origin", { output = true }).output
+	local full_name = vim.api.nvim_exec2("Git ls-files --full-name %", { output = true }).output
+	local _, line = unpack(vim.api.nvim_win_get_cursor(0))
+
+	if string.sub(url, 1, string.len("https://")) == "https://" then
+		url = url:gsub("%.git", "")
+	else
+		url = url:gsub(":", "/"):gsub("git@", "https://"):gsub("%.git", "")
+	end
+
+	local full_url = url .. "/blob/" .. hash .. "/" .. full_name .. "#L" .. line
+
+	vim.fn.setreg("+", full_url)
+end)
