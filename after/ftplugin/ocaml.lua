@@ -1,11 +1,15 @@
-vim.opt_local.tabstop = 2
-vim.opt_local.softtabstop = 2
-vim.opt_local.shiftwidth = 2
-vim.opt_local.expandtab = true
+local set_local = vim.opt_local
+local fn = vim.fn
+local lsp = vim.lsp
+
+set_local.tabstop = 2
+set_local.softtabstop = 2
+set_local.shiftwidth = 2
+set_local.expandtab = true
 
 local toggle_interface_impementation = function(cmd)
-	local client = assert(vim.lsp.get_clients()[1])
-	client:request("ocamllsp/switchImplIntf", { vim.fn.expand("%") }, function(err, res, ctx)
+	local client = assert(lsp.get_clients()[1])
+	client:request("ocamllsp/switchImplIntf", { fn.expand("%") }, function(err, res, ctx)
 		local next = next
 		local _, file_uri = next(res)
 		if file_uri == nil then
