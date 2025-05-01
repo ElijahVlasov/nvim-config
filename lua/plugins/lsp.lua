@@ -152,7 +152,6 @@ return {
 				"haskell-language-server",
 				"ocamllsp",
 				"asm-lsp",
-				-- "tailwind-language-server",
 			}
 
 			vim.list_extend(ensure_installed, servers_to_install)
@@ -227,7 +226,7 @@ return {
 				syntaxDocumentation = { enable = true },
 			})
 
-			vim.keymap.set("", "<leader>l", function()
+			vim.keymap.set("", "<localleader>l", function()
 				local config = vim.diagnostic.config() or {}
 				if config.virtual_text then
 					vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
