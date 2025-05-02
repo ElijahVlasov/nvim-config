@@ -10,3 +10,5 @@ set.number = true
 set.signcolumn = "number"
 
 set.clipboard = "unnamedplus"
+
+set.exrc = true

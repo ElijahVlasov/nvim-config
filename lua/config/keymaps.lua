@@ -13,7 +13,7 @@ vim.keymap.set("n", "<S-l>", "<cmd>bnext<CR>")
 vim.keymap.set("n", "P", "p")
 vim.keymap.set("n", "p", "P")
 
-vim.keymap.set("n", "<C-i>", "<C-a>")
+vim.keymap.set("n", "<A-i>", "<C-a>")
 
 vim.keymap.set("n", "<localleader>j", function()
 	local r, c = unpack(vim.api.nvim_win_get_cursor(0))
