@@ -23,6 +23,32 @@ local snips = {
 			{ delimiters = "<>" }
 		)
 	),
+	s(
+		{ trig = "mod_with_sig" },
+		fmt(
+			[[
+            module <> : sig 
+              <>
+            end
+        ]],
+			{ i(1, "NAME"), i(2, "") },
+			{ delimiters = "<>" }
+		)
+	),
+	s(
+		{ trig = "mod_with_sig_and_impl" },
+		fmt(
+			[[
+            module <> : sig 
+              <>
+            end = struct 
+              <>
+            end
+        ]],
+			{ i(1, "NAME"), i(2, ""), i(3, "") },
+			{ delimiters = "<>" }
+		)
+	),
 }
 
 ls.add_snippets("ocaml", snips)
