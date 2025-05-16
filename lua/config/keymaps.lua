@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "  "
 
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", vim.cmd.Oil)
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
@@ -49,4 +49,4 @@ vim.keymap.set("n", "<localleader>pl", function()
 	local full_url = url .. "/blob/" .. hash .. "/" .. full_name .. "#L" .. line
 
 	vim.fn.setreg("+", full_url)
-end)
+end, { desc = "Copy github permalink to current line" })

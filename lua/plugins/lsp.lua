@@ -190,11 +190,31 @@ return {
 					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0 })
 					vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = 0 })
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+					vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = 0 })
 
 					vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, { buffer = 0 })
 					vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, { buffer = 0 })
 					vim.keymap.set("n", "<space>wd", builtin.lsp_document_symbols, { buffer = 0 })
-					vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+					vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { buffer = 0 })
+
+					vim.keymap.set(
+						"n",
+						"<leader>lwa",
+						"<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>",
+						{ buffer = 0 }
+					)
+					vim.keymap.set(
+						"n",
+						"<leader>lwr",
+						"<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>",
+						{ buffer = 0 }
+					)
+					vim.keymap.set(
+						"n",
+						"<leader>lwl",
+						"<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
+						{ buffer = 0 }
+					)
 
 					local filetype = vim.bo[bufnr].filetype
 					if disable_semantic_tokens[filetype] then

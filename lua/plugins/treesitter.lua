@@ -20,12 +20,21 @@ local opts = {
 		"yaml",
 	},
 	highlight = { enable = true },
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = "<cr>", -- set to `false` to disable one of the mappings
+			node_incremental = "<leader>rn",
+			scope_incremental = "<leader>rc",
+			node_decremental = "<leader>rm",
+		},
+	},
 }
 
 return {
 	"nvim-treesitter/nvim-treesitter",
 	opts = opts,
-	config = function()
+	config = function(_, opts)
 		require("nvim-treesitter.configs").setup(opts)
 		local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 		parser_config.vhs = {
