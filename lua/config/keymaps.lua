@@ -9,6 +9,9 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<C-o>", "<C-o>zz")
 vim.keymap.set("n", "<C-i>", "<C-i>zz")
 
+vim.keymap.set("i", "<C-S-v>", "<C-v>")
+vim.keymap.set("i", "<C-v>", "<C-r><C-p>+")
+
 vim.keymap.set("n", "H", "<cmd>bprev<CR>")
 vim.keymap.set("n", "L", "<cmd>bnext<CR>")
 
@@ -27,7 +30,7 @@ vim.keymap.set("n", "<leader>cbd", function()
 	vim.cmd([[colorscheme carbonized-light]])
 end, { desc = "Turn on carbonized light" })
 
-vim.keymap.set("n", "<leader>s", "i <esc>")
+vim.keymap.set("n", "<leader>s", "i <esc>", { desc = "Insert one space" })
 vim.keymap.set("n", "<leader>do", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>d[", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>d]", "<cmd>lua vim.diagnostic.goto_next()<CR>", { noremap = true, silent = true })
