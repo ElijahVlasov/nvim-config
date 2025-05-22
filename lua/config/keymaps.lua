@@ -9,14 +9,11 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<C-o>", "<C-o>zz")
 vim.keymap.set("n", "<C-i>", "<C-i>zz")
 
-vim.keymap.set("i", "<C-S-v>", "<C-v>")
+vim.keymap.set("i", "<A-v>", "<C-v>")
 vim.keymap.set("i", "<C-v>", "<C-r><C-p>+")
 
 vim.keymap.set("n", "H", "<cmd>bprev<CR>")
 vim.keymap.set("n", "L", "<cmd>bnext<CR>")
-
-vim.keymap.set("n", "P", "p")
-vim.keymap.set("n", "p", "P")
 
 vim.keymap.set("n", "<A-i>", "<C-a>", { desc = "Avoiding clash with the tmux" })
 
@@ -53,3 +50,27 @@ vim.keymap.set("n", "<localleader>pl", function()
 
 	vim.fn.setreg("+", full_url)
 end, { desc = "Copy github permalink to current line" })
+
+-- Some tmux control
+vim.keymap.set("n", "<F2>", function()
+	vim.fn.jobstart("tmux resize-pane -Z")
+end, { desc = "Toggle zoom of current tmux pane" })
+
+vim.keymap.set("n", "<leader>tt", function()
+	local reg = vim.fn.getreg("+")
+	vim.cmd("norm yiw")
+	local word = vim.fn.getreg("+")
+	if word == "true" then
+		word = "false"
+	elseif word == "True" then
+		word = "False"
+	elseif word == "false" then
+		word = "true"
+	elseif word == "False" then
+		word = "True"
+	end
+	vim.cmd("norm ciw" .. word)
+
+	-- revert everything back
+	vim.fn.setreg("+", reg)
+end, { desc = "Toggle true/false (True/False) under the cursor" })
