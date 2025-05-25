@@ -2,7 +2,7 @@
 local function create_scratch_execute_buffer()
 	-- Create a new scratch buffer
 	local current_buf = vim.api.nvim_get_current_buf()
-	local buf = vim.api.nvim_create_buf(false, true)
+	local buf = vim.api.nvim_create_buf(false, false)
 
 	vim.api.nvim_buf_set_name(buf, "🐗🐗🐗🐗🐗🐗🐗")
 	vim.cmd("buffer " .. buf)
