@@ -7,7 +7,10 @@ return {
 			vim.cmd("Git add .")
 			print("git added everything 🫃🏻")
 		end, { noremap = true, desc = "git add ." })
-		vim.keymap.set("n", "<F11>", "<cmd>Git commit<CR>", { noremap = true, desc = "git commit" })
+		vim.keymap.set("n", "<F11>", function()
+			vim.cmd("Git commit")
+			vim.cmd("startinsert")
+		end, { noremap = true, desc = "git commit" })
 		vim.keymap.set("n", "<F23>", "<cmd>Git commit --amend<CR>", { noremap = true, desc = "git commit --amend" })
 		vim.keymap.set("n", "<F12>", "<cmd>Git push<CR>", { noremap = true, desc = "git push" })
 		-- <S-F12>

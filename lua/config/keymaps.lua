@@ -74,3 +74,6 @@ vim.keymap.set("n", "<leader>tt", function()
 	-- revert everything back
 	vim.fn.setreg("+", reg)
 end, { desc = "Toggle true/false (True/False) under the cursor" })
+
+vim.keymap.set("n", "<localleader>?", "<cmd>luafile .nvim.lua<CR>", { desc = "Source .nvim.lua" })
+vim.keymap.set("n", "<leader>x", "<cmd>.lua<CR>", { desc = "Execute the current line" })
