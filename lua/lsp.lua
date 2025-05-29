@@ -64,3 +64,9 @@ vim.diagnostic.config({
 
 endhints.enable()
 vim.lsp.inlay_hint.enable()
+
+vim.filetype.add({
+	pattern = {
+		["*.mli"] = "ocaml_interface",
+	},
+})

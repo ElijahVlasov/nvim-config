@@ -5,6 +5,7 @@ local opts = {
 		"html",
 		"haskell",
 		"ocaml",
+		"ocaml_interface",
 		"rust",
 		"javascript",
 		"json",
