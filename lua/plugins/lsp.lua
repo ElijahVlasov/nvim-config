@@ -119,13 +119,12 @@ return {
 				ocamllsp = {
 					manual_install = true,
 					cmd = { "dune", "tools", "exec", "ocamllsp" },
-					-- cmd = { "dune", "exec", "ocamllsp" },
 					settings = {
 						codelens = { enable = true },
 						inlayHints = { enable = true },
 						syntaxDocumentation = { enable = true },
 					},
-					filetypes = { "ocaml", "menhir", "ocamlinterface", "ocamllex", "reason", "dune" },
+					filetypes = { "ocaml", "menhir", "ocaml_interface", "ocamllex", "reason", "dune" },
 					server_capabilities = { semanticTokensProvider = false },
 
 					-- TODO: Check if i still need the filtypes stuff i had before
