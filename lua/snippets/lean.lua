@@ -39,4 +39,24 @@ ls.add_snippets("lean", {
 			{ delimiters = "<>" }
 		)
 	),
+	s(
+		"convl",
+		fmt(
+			[[
+    conv =>
+        lhs 
+        {}]],
+			{ i(1, "n") }
+		)
+	),
+	s(
+		"convr",
+		fmt(
+			[[
+    conv =>
+        rhs 
+        {}]],
+			{ i(1, "n") }
+		)
+	),
 })

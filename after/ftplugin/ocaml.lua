@@ -16,9 +16,15 @@ local toggle_interface_impementation = function(cmd)
 			print("LSP didn't return anything")
 		elseif #res == 1 then
 			local file_name = vim.uri_to_fname(file_uri)
+			if vim.fn.filereadable(file_name) == 0 then
+				-- The file is not readable, meaning we probably
+				-- have a relative path.
+				file_name = string.sub(file_name, 2)
+			end
+
 			-- this is stupid because ocaml-lsp returns
 			-- file path starting with /
-			vim.cmd(cmd .. " " .. string.sub(file_name, 2))
+			vim.cmd(cmd .. " " .. file_name)
 		else
 			print("LSP returned multiple results")
 		end
