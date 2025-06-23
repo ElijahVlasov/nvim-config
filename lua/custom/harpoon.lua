@@ -6,6 +6,7 @@ harpoon:setup()
 
 vim.keymap.set("n", "<leader>a", function()
 	harpoon:list():prepend()
+	print("Prepended to the harpoon list 🦯")
 end)
 
 vim.keymap.set("n", "<leader>h", function()
@@ -23,6 +24,7 @@ end)
 
 vim.keymap.set("n", "<leader>~", function()
 	harpoon:list():clear()
+	print("Cleared the harpoon list 🪣")
 end)
 
 -- Toggle previous & next buffers stored within Harpoon list
