@@ -70,3 +70,19 @@ vim.filetype.add({
 		["*.mli"] = "ocaml_interface",
 	},
 })
+
+local diagnostic_conf = {
+	virtual_text = false,
+	signs = false,
+	underline = false,
+}
+
+vim.keymap.set("n", "<localleader>=", function()
+	local tmp = vim.diagnostic.config()
+	if tmp then
+		vim.diagnostic.config(diagnostic_conf)
+		diagnostic_conf = tmp
+	else
+		print("Something went wrong")
+	end
+end, { desc = "Toggle LSP diagnostic" })

@@ -8,6 +8,7 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<C-o>", "<C-o>zz")
 vim.keymap.set("n", "<C-i>", "<C-i>zz")
+vim.keymap.set("i", "<C-\\>", "<C-o>zz")
 
 vim.keymap.set("i", "<A-v>", "<C-v>")
 vim.keymap.set("i", "<C-v>", "<C-r><C-p>+")
@@ -52,7 +53,7 @@ vim.keymap.set("n", "<localleader>pl", function()
 end, { desc = "Copy github permalink to current line" })
 
 -- Some tmux control
-vim.keymap.set("n", "<F2>", function()
+vim.keymap.set({ "n", "i" }, "<F2>", function()
 	vim.fn.jobstart("tmux resize-pane -Z")
 end, { desc = "Toggle zoom of current tmux pane" })
 
