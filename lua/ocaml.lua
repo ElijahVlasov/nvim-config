@@ -25,9 +25,31 @@ local toggle_interface_impementation = function(cmd)
 	end)
 end
 
+local next_typed_hole = function(direction)
+	local client = assert(lsp.get_clients()[1])
+	local pos = vim.api.nvim_win_get_cursor(0)
+	client:request("ocamllsp/jumpToTypedHole", {
+		uri = vim.uri_from_fname(vim.fn.expand("%:p")),
+		position = { line = pos[1] - 1, character = pos[2] },
+		direction = direction,
+	}, function(err, res, ctx)
+		if err ~= nil then
+			print("Error happened" .. err)
+		else
+			vim.api.nvim_win_set_cursor(0, { res.start.line + 1, res.start.character })
+		end
+	end)
+end
+
 vim.keymap.set("n", "<localleader>i", function()
 	toggle_interface_impementation("e")
 end)
 vim.keymap.set("n", "<localleader>v", function()
 	toggle_interface_impementation("vs")
+end)
+vim.keymap.set("n", "<leader>n", function()
+	next_typed_hole("next")
+end)
+vim.keymap.set("n", "<leader>p", function()
+	next_typed_hole("prev")
 end)

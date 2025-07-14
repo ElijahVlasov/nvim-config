@@ -12,3 +12,5 @@ set.signcolumn = "number"
 set.clipboard = "unnamedplus"
 
 set.exrc = true
+
+set.nrformats = "bin,hex,alpha"

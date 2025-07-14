@@ -149,7 +149,6 @@ return {
 				"lua_ls",
 				"rust-analyzer",
 				"haskell-language-server",
-				"ocamllsp",
 				"asm-lsp",
 			}
 
@@ -239,11 +238,6 @@ return {
 			require("lsp_lines").setup()
 			vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
 			lspconfig.clangd.setup({})
-			lspconfig.ocamllsp.setup({
-				codelens = { enable = true },
-				inlayHints = { enable = true },
-				syntaxDocumentation = { enable = true },
-			})
 
 			vim.keymap.set("", "<localleader>l", function()
 				local config = vim.diagnostic.config() or {}
