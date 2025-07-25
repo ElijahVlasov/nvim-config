@@ -12,6 +12,12 @@ vim.keymap.set("i", "<C-\\>", function()
 	vim.cmd(":norm! zz")
 end)
 
+-- Remove last search on esc
+vim.keymap.set("n", "<esc>", '<cmd>let @/ = ""<CR><esc>')
+
+vim.keymap.set("i", "<C-g>c", function()
+	vim.cmd(":norm! m`b~``")
+end, { desc = "Capitalise the last word" })
 vim.keymap.set("i", "<A-v>", "<C-v>")
 vim.keymap.set("i", "<C-v>", "<C-r><C-p>+")
 

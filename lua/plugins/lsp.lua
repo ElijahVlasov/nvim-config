@@ -126,8 +126,6 @@ return {
 					},
 					filetypes = { "ocaml", "menhir", "ocaml_interface", "ocamllex", "reason", "dune" },
 					server_capabilities = { semanticTokensProvider = false },
-
-					-- TODO: Check if i still need the filtypes stuff i had before
 				},
 			}
 
@@ -190,9 +188,9 @@ return {
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
 					vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, { buffer = 0 })
 
-					vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, { buffer = 0 })
-					vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, { buffer = 0 })
-					vim.keymap.set("n", "<space>wd", builtin.lsp_document_symbols, { buffer = 0 })
+					vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { buffer = 0 })
+					vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = 0 })
+					vim.keymap.set("n", "<leader>wd", builtin.lsp_document_symbols, { buffer = 0 })
 					vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { buffer = 0 })
 
 					vim.keymap.set(
