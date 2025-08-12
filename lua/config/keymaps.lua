@@ -9,7 +9,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "<C-o>", "<C-o>zz")
 vim.keymap.set("n", "<C-i>", "<C-i>zz")
 vim.keymap.set("i", "<C-\\>", function()
-	vim.cmd(":norm! zz")
+	vim.cmd(":norm! zza")
 end)
 
 -- Remove last search on esc
@@ -86,3 +86,6 @@ end, { desc = "Toggle true/false (True/False) under the cursor" })
 
 vim.keymap.set("n", "<localleader>?", "<cmd>luafile .nvim.lua<CR>", { desc = "Source .nvim.lua" })
 vim.keymap.set("n", "<leader>x", "<cmd>.lua<CR>", { desc = "Execute the current line" })
+
+-- CRACKED
+vim.keymap.set("i", "jj", "<Esc>")
