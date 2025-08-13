@@ -37,6 +37,7 @@
   "oil.nvim": { "branch": "master", "commit": "685cdb4ffa74473d75a1b97451f8654ceeab0f4a" },
   "phosphor": { "branch": "main", "commit": "90199e0166f93f36f01d22fb26f907ce8dcdf57e" },
   "plenary.nvim": { "branch": "master", "commit": "857c5ac632080dba10aae49dba902ce3abf91b35" },
+  "rustaceanvim": { "branch": "master", "commit": "eb606eb3785f6c6e31ef675c32b706694b76923b" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
   "synthweave": { "branch": "master", "commit": "e05b865c8591dfc810e7f2b31f93df80f1b9c6a6" },
   "telescope.nvim": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },

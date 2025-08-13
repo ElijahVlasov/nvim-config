@@ -34,8 +34,6 @@ return {
 			"b0o/SchemaStore.nvim",
 		},
 		config = function()
-			-- Don't do LSP stuff if we're in Obsidian Edit mode
-
 			local capabilities = nil
 			if pcall(require, "cmp_nvim_lsp") then
 				capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -72,20 +70,59 @@ return {
 						semanticTokensProvider = vim.NIL,
 					},
 				},
-				rust_analyzer = true,
+				-- rust_analyzer = {
+				-- 	cmd = { "rust-analyzer" },
+				-- 	filetypes = { "rust" },
+				-- 	capabilities = {
+				-- 		experimental = {
+				-- 			commands = {
+				-- 				commands = {
+				-- 					"rust-analyzer.showReferences",
+				-- 					"rust-analyzer.runSingle",
+				-- 					"rust-analyzer.debugSingle",
+				-- 				},
+				-- 			},
+				-- 		},
+				-- 	},
+				-- 	settings = {
+				-- 		["rust-analyzer"] = {
+				-- 			diagnostics = {
+				-- 				enable = true,
+				-- 				experimental = {
+				-- 					enable = true,
+				-- 				},
+				-- 				styleLints = {
+				-- 					enable = true,
+				-- 				},
+				-- 			},
+				-- 			lens = {
+				-- 				enable = true,
+				-- 				run = {
+				-- 					enable = true,
+				-- 				},
+				-- 				implementations = {
+				-- 					enable = true,
+				-- 				},
+				-- 				references = {
+				-- 					adt = {
+				-- 						enable = true,
+				-- 					},
+				-- 					method = {
+				-- 						enable = true,
+				-- 					},
+				-- 					trait = {
+				-- 						enable = true,
+				-- 					},
+				-- 					enumVariant = {
+				-- 						enable = true,
+				-- 					},
+				-- 				},
+				-- 			},
+				-- 		},
+				-- 	},
+				-- },
 
 				pyright = true,
-				-- mojo = { manual_install = true },
-
-				-- Enabled biome formatting, turn off all the other ones generally
-				-- ts_ls = {
-				--   root_dir = require("lspconfig").util.root_pattern "package.json",
-				--   single_file = false,
-				--   server_capabilities = {
-				--     documentFormattingProvider = false,
-				--   },
-				-- },
-				-- denols = true,
 				jsonls = {
 					server_capabilities = {
 						documentFormattingProvider = false,
@@ -145,7 +182,6 @@ return {
 				"clangd",
 				"stylua",
 				"lua_ls",
-				"rust-analyzer",
 				"haskell-language-server",
 				"asm-lsp",
 			}
@@ -178,6 +214,14 @@ return {
 						settings = {}
 					end
 
+					if client and client:supports_method("textDocument/codeLens") then
+						vim.lsp.codelens.refresh()
+						vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+							buffer = bufnr,
+							callback = vim.lsp.codelens.refresh,
+						})
+					end
+
 					local builtin = require("telescope.builtin")
 
 					vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
@@ -193,24 +237,15 @@ return {
 					vim.keymap.set("n", "<leader>wd", builtin.lsp_document_symbols, { buffer = 0 })
 					vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { buffer = 0 })
 
-					vim.keymap.set(
-						"n",
-						"<leader>lwa",
-						"<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>",
-						{ buffer = 0 }
-					)
-					vim.keymap.set(
-						"n",
-						"<leader>lwr",
-						"<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>",
-						{ buffer = 0 }
-					)
+					vim.keymap.set("n", "<leader>lwa", vim.lsp.buf.add_workspace_folder, { buffer = 0 })
+					vim.keymap.set("n", "<leader>lwr", vim.lsp.buf.remove_workspace_folder, { buffer = 0 })
 					vim.keymap.set(
 						"n",
 						"<leader>lwl",
 						"<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
 						{ buffer = 0 }
 					)
+					vim.keymap.set("n", "<leader>clr", vim.lsp.codelens.run, { buffer = 0 })
 
 					local filetype = vim.bo[bufnr].filetype
 					if disable_semantic_tokens[filetype] then
