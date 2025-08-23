@@ -10,6 +10,11 @@ require("telescope").setup({
 				["<C-h>"] = "which_key",
 			},
 		},
+		layout_config = {
+			horizontal = {
+				preview_cutoff = 0,
+			},
+		},
 	},
 	pickers = {
 		-- Default configuration for builtin pickers goes here:
@@ -42,3 +47,4 @@ vim.keymap.set("n", "<leader>fr", builtin.registers, { desc = "Telescope registe
 vim.keymap.set("n", "<leader>fcs", builtin.colorscheme, { desc = "Telescope color schemes" })
 vim.keymap.set("n", "<leader>gd", builtin.lsp_definitions, { desc = "Telescope/goto defs" })
 vim.keymap.set("n", "<leader>fsi", builtin.treesitter, { desc = "Telescope treesitter" })
+vim.keymap.set("n", "<leader>f.", builtin.resume, { desc = "Resume last telescope" })
