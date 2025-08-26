@@ -27,6 +27,7 @@ require("lazy").setup({
 			lazy = false,
 			opts = {
 				image = { enabled = true },
+				notifier = { enabled = true },
 			},
 			config = function(_, opts)
 				require("snacks").setup(opts)

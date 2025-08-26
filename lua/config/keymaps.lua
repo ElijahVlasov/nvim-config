@@ -86,6 +86,10 @@ end, { desc = "Toggle true/false (True/False) under the cursor" })
 
 vim.keymap.set("n", "<localleader>?", "<cmd>luafile .nvim.lua<CR>", { desc = "Source .nvim.lua" })
 vim.keymap.set("n", "<leader>x", "<cmd>.lua<CR>", { desc = "Execute the current line" })
+vim.keymap.set("n", "<leader>mp", "<cmd>e $NVIM_CFG/lua/config/keymaps.lua<CR>", { desc = "Open keymaps config" })
 
 -- CRACKED
 vim.keymap.set("i", "jj", "<Esc>")
+vim.keymap.set("i", "jk", "<Esc>")
+vim.keymap.set("i", "jl", "<Esc>")
+vim.keymap.set("i", "jh", "<Esc>")

@@ -60,6 +60,7 @@ vim.diagnostic.config({
 			[vim.diagnostic.severity.WARN] = "WarningMsg",
 		},
 	},
+	update_in_insert = true,
 })
 
 endhints.enable()
@@ -86,3 +87,10 @@ vim.keymap.set("n", "<localleader>=", function()
 		print("Something went wrong")
 	end
 end, { desc = "Toggle LSP diagnostic" })
+
+vim.keymap.set("n", "]e", function()
+	vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = 1 })
+end)
+vim.keymap.set("n", "[e", function()
+	vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = -1 })
+end)
