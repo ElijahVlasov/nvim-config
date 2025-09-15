@@ -25,6 +25,7 @@ vim.keymap.set("n", "H", "<cmd>bprev<CR>")
 vim.keymap.set("n", "L", "<cmd>bnext<CR>")
 
 vim.keymap.set("n", "<A-i>", "<C-a>", { desc = "Avoiding clash with the tmux" })
+vim.keymap.set({ "n", "i", "v", "c" }, "<C-a>", "<cmd>lua vim.notify('Is tmux running?')<CR><C-a>")
 
 vim.keymap.set("n", "<leader>puc", function()
 	vim.cmd([[colorscheme catppuccin-macchiato]])

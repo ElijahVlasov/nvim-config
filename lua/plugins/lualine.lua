@@ -5,8 +5,8 @@ return {
 		options = {
 			icons_enabled = true,
 			theme = "catppuccin-mocha",
-			component_separators = { left = "", right = "" },
-			section_separators = { left = "", right = "" },
+			component_separators = { left = "|", right = "|" },
+			section_separators = { left = "", right = "" },
 			disabled_filetypes = {
 				statusline = {},
 				winbar = {},
@@ -28,7 +28,28 @@ return {
 				"diff",
 				{ "diagnostics", symbols = { error = " ", warn = "", info = " ", hint = " " } },
 			},
-			lualine_c = { "filename", "lsp_status" },
+			lualine_c = {
+				"filename",
+				{
+					"lsp_status",
+					icon = "🐷",
+					symbols = {
+						spinner = {
+							"🐖💨",
+							"🐖💨",
+							"🐖",
+							"🐖",
+							"🐖💨",
+							"🐖💨",
+							"🐖",
+							"🐖",
+							"🐖💨",
+							"🐖💨",
+						},
+						done = "🐷",
+					},
+				},
+			},
 			lualine_x = {
 				{
 					function()
@@ -58,7 +79,17 @@ return {
 		extensions = {},
 	},
 	config = function(_, opts)
-		require("lualine").setup(opts)
+		local lualine = require("lualine")
+		lualine.setup(opts)
 		vim.opt_global.showmode = false
+
+		vim.api.nvim_create_autocmd("WinResized", {
+			group = vim.api.nvim_create_augroup("change_lua_line", { clear = true }),
+			desc = "adjust lualine if resized has happened",
+			callback = function()
+				-- vim.notify("hi from resized")
+				-- local config = lualine.get_config()
+			end,
+		})
 	end,
 }
