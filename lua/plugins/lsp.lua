@@ -153,6 +153,12 @@ return {
 					},
 				},
 
+				tblgen_lsp_server = {
+					manual_install = true,
+					cmd = { "tblgen-lsp-server" },
+					filetypes = { "tablegen" },
+				},
+
 				ocamllsp = {
 					manual_install = true,
 					cmd = { "dune", "tools", "exec", "ocamllsp" },

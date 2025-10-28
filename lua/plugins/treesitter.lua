@@ -15,6 +15,7 @@ local opts = {
 		"python",
 		"query",
 		"regex",
+		"tablegen",
 		"tsx",
 		"typescript",
 		"vim",
