@@ -52,5 +52,3 @@ end, { silent = true })
 vim.keymap.set({ "i", "s" }, "<A-h>", function()
 	return vim.snippet.active({ direction = -1 }) and vim.snippet.jump(-1)
 end, { silent = true })
-
-vim.keymap.set({ "n", "v", "i", "s" }, "<esc>", "<cmd>lua vim.snippet.stop()<CR><esc>")

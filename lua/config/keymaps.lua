@@ -12,8 +12,9 @@ vim.keymap.set("i", "<C-\\>", function()
 	vim.cmd(":norm! zza")
 end)
 
+vim.keymap.set({ "v", "i", "s" }, "<esc>", "<cmd>lua vim.snippet.stop()<CR><esc>")
 -- Remove last search on esc
-vim.keymap.set("n", "<esc>", '<cmd>let @/ = ""<CR><esc>')
+vim.keymap.set("n", "<esc>", '<cmd>let @/ = ""<CR><cmd>lua vim.snippet.stop()<CR><esc>')
 
 vim.keymap.set("i", "<C-g>c", function()
 	vim.cmd(":norm! m`b~``")
