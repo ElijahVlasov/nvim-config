@@ -1,7 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "  "
 
-vim.keymap.set("n", "<leader>pv", vim.cmd.Oil)
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
@@ -95,3 +94,31 @@ vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("i", "jl", "<Esc>")
 vim.keymap.set("i", "jh", "<Esc>")
+
+-- Toggle Oil.nvim
+local last_buf = nil
+local function toggle_oil()
+	if vim.bo.filetype ~= "oil" then
+		last_buf = vim.api.nvim_get_current_buf()
+		vim.cmd.Oil()
+	else
+		if last_buf ~= nil then
+			vim.api.nvim_set_current_buf(last_buf)
+		else
+			vim.cmd.Oil()
+		end
+	end
+end
+
+local oilGrp = vim.api.nvim_create_augroup("OilGrp", { clear = true })
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	callback = function(_args)
+		if vim.bo.filetype ~= "oil" then
+			last_buf = vim.api.nvim_get_current_buf()
+		end
+	end,
+	group = oilGrp,
+})
+
+vim.keymap.set("n", "<F1>", toggle_oil)
+vim.keymap.set("n", "<leader>pv", toggle_oil)
