@@ -170,6 +170,17 @@ return {
 					filetypes = { "ocaml", "menhir", "ocaml_interface", "ocamllex", "reason", "dune" },
 					server_capabilities = { semanticTokensProvider = false },
 				},
+
+				cmake = {
+					manual_install = true,
+					cmd = { "neocmakelsp", "stdio" },
+					settings = {
+						codelens = { enable = true },
+						inlayHints = { enable = true },
+						syntaxDocumentation = { enable = true },
+					},
+					filetypes = { "cmake" },
+				},
 			}
 
 			-- require("ocaml").setup()

@@ -6,6 +6,12 @@ dap.adapters.gdb = {
 	args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
 }
 
+dap.adapters.lldb = {
+	type = "executable",
+	command = "/usr/bin/lldb-dap", -- adjust as needed, must be absolute path
+	name = "lldb",
+}
+
 dap.configurations.c = {
 	{
 		name = "Launch",
@@ -16,6 +22,19 @@ dap.configurations.c = {
 		end,
 		cwd = "${workspaceFolder}",
 		stopAtBeginningOfMainSubprogram = false,
+	},
+}
+
+dap.configurations.cpp = {
+	{
+		name = "Launch",
+		type = "lldb",
+		request = "launch",
+		program = function()
+			return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+		end,
+		cwd = "${workspaceFolder}",
+		stopAtBeginningOfMainSubprogram = true,
 	},
 }
 
@@ -40,6 +59,11 @@ end)
 vim.keymap.set("n", "<Leader>dr", function()
 	dap.repl.open()
 end)
+
+local dapui = require("dapui")
+
+vim.keymap.set("n", "<LocalLeader>u", dapui.toggle)
+vim.keymap.set("n", "<LocalLeader>s", dapui.eval)
 
 vim.fn.sign_define("DapBreakpoint", { text = "🚬", texthl = "red", linehl = "", numhl = "" })
 vim.fn.sign_define("DapBreakpointRejected", { text = "🚭", texthl = "red", linehl = "", numhl = "" })
