@@ -15,3 +15,5 @@ set.exrc = true
 
 set.nrformats = "bin,hex,alpha"
 
+-- due to recent hacks
+set.modeline = false
