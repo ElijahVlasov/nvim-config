@@ -135,6 +135,8 @@ return {
 					},
 				},
 
+				glsl_analyzer = true,
+
 				-- cssls = {
 				--   server_capabilities = {
 				--     documentFormattingProvider = false,
