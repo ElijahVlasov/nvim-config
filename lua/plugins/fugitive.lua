@@ -2,6 +2,8 @@ return {
 	"tpope/vim-fugitive",
 	event = "BufWinEnter",
 	config = function()
+		vim.keymap.set("n", "<F9>", "<cmd>Git pull<CR>", { noremap = true, desc = "git pull" })
+		vim.keymap.set("n", "<F21>", "<cmd>Git pull --no-rebase<CR>", { noremap = true, desc = "git pull --no-rebase" })
 		vim.keymap.set("n", "<F10>", "<cmd>Git add %<CR>", { noremap = true, desc = "git add %" })
 		vim.keymap.set("n", "<F22>", function()
 			vim.cmd("Git add .")
