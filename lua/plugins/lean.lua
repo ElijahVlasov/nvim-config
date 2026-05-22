@@ -1,5 +1,6 @@
 return {
 	"Julian/lean.nvim",
+	branch = "main",
 	event = { "BufReadPre *.lean", "BufNewFile *.lean" },
 
 	dependencies = {
