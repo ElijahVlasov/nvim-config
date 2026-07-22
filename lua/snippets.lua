@@ -52,3 +52,19 @@ end, { silent = true })
 vim.keymap.set({ "i", "s" }, "<A-h>", function()
 	return vim.snippet.active({ direction = -1 }) and vim.snippet.jump(-1)
 end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-n>", function()
+	if ls.choice_active() then
+		ls.change_choice(1)
+	else
+		local keys = vim.api.nvim_replace_termcodes("<C-n>", true, false, true)
+		vim.api.nvim_feedkeys(keys, "n", false)
+	end
+end)
+vim.keymap.set({ "i", "s" }, "<C-p>", function()
+	if ls.choice_active() then
+		ls.change_choice(1)
+	else
+		local keys = vim.api.nvim_replace_termcodes("<C-p>", true, false, true)
+		vim.api.nvim_feedkeys(keys, "n", false)
+	end
+end)
