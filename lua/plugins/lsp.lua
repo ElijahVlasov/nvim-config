@@ -44,6 +44,7 @@ return {
 			local servers = {
 				bashls = true,
 				clangd = true,
+				fortls = true,
 				gopls = {
 					manual_install = true,
 					settings = {
